@@ -108,6 +108,7 @@ a{color:inherit}
 .btn--dark{background:var(--espresso)}
 .btn--wide{width:100%}
 .btn--wide>span{text-align:center}
+.btn:disabled{cursor:not-allowed}
 
 /* ---------- Hero ---------- */
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:5vw;
@@ -245,7 +246,7 @@ a{color:inherit}
   background:#fff;color:var(--espresso);transition:border-color .25s;width:100%}
 .field textarea{resize:vertical;min-height:86px}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--coral)}
-.field.error input,.field.error select{border-color:var(--coral);background:#fff5f4}
+.field.error input,.field.error select,.field.error textarea{border-color:var(--coral);background:#fff5f4}
 .field .err-msg{display:none;font-size:.78rem;color:var(--coral);font-weight:600}
 .field.error .err-msg{display:block}
 .book-submit{margin-top:24px}
@@ -337,7 +338,7 @@ a{color:inherit}
 .toast.out{animation:toastOut .3s ease forwards}
 @keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes toastOut{to{opacity:0;transform:translateY(14px)}}
-.to-top{position:fixed;right:26px;bottom:26px;z-index:70;width:50px;height:50px;
+.to-top{position:fixed;right:26px;bottom:26px;z-index:55;width:50px;height:50px;
   border-radius:50%;border:1px solid var(--taupe-dim);background:rgba(29,17,9,.85);
   backdrop-filter:blur(8px);color:var(--peach);display:flex;align-items:center;justify-content:center;
   opacity:0;visibility:hidden;transform:translateY(14px);transition:.35s}
@@ -411,16 +412,16 @@ a{color:inherit}
   <section class="hero">
     <div>
       <div class="hero-eyebrow" data-reveal>Кофейня в центре города</div>
-      <h1 data-reveal>Кофе, ради которого<span class="script">возможно встают утром</span></h1>
-      <p class="lead" data-reveal>Обжариваем зерно сами, варим на зерне из Эфиопии и Бразилии и печём десерты каждое утро😱😱😱. Закажите онлайн пж, приготовим к вашему приходу, все круто будет.</p>
+      <h1 data-reveal>Кофе, ради которого<span class="script">встают утром</span></h1>
+      <p class="lead" data-reveal>Обжариваем зерно сами, варим на зерне из Эфиопии и Бразилии и печём десерты каждое утро. Закажите онлайн — приготовим к вашему приходу.</p>
       <div class="hero-cta" data-reveal>
         <a class="btn" href="#menu"><span>Смотреть меню</span></a>
         <a class="btn btn--ghost" href="#booking"><span>Забронировать столик</span></a>
       </div>
       <div class="hero-stats" data-reveal>
         <div><div class="num" data-count="7">0</div><div class="lbl">лет работы</div></div>
-        <div><div class="num" data-count="12">0</div><div class="lbl">сортов зерна, которых возможно не существует</div></div>
-        <div><div class="num" data-count="40">0</div><div class="lbl">тыс. гостей ежедневно к нам не приходят</div></div>
+        <div><div class="num" data-count="12">0</div><div class="lbl">сортов зерна</div></div>
+        <div><div class="num" data-count="40">0</div><div class="lbl">тыс. гостей</div></div>
       </div>
     </div>
     <div class="slider" id="heroSlider" data-reveal>
@@ -435,12 +436,12 @@ a{color:inherit}
   <section class="info-bar">
     <div class="info-cell" data-reveal>
       <span class="lbl">Часы работы</span>
-      <span class="val">Пн–Вс · 8:00–8.01</span>
+      <span class="val">Пн–Вс · 8:00–22:00</span>
     </div>
     <div class="info-cell" data-reveal>
       <span class="lbl">Адрес</span>
       <span class="val">ул. Примерная, 12</span>
-      <a class="link" href="#contacts">Как нас найти → никак</a>
+      <a class="link" href="#contacts">Как нас найти →</a>
     </div>
     <div class="info-cell" data-reveal>
       <span class="lbl">Столик на вечер?</span>
@@ -452,7 +453,7 @@ a{color:inherit}
   <!-- Text marquee -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marqueeTrack">
-      <div class="marquee-item">Свежая обжарка <i>◆</i> Прикинь, я тебя люблю😱 <i>◆</i> Десерты каждое утро <i>◆</i>Прикинь, я тебя люблю😱 <i>◆</i> Своя пекарня <i>◆</i></div>
+      <div class="marquee-item">Свежая обжарка <i>◆</i> Зерно из Эфиопии <i>◆</i> Десерты каждое утро <i>◆</i> Завтраки до 12:00 <i>◆</i> Своя пекарня <i>◆</i></div>
     </div>
   </div>
 
@@ -486,8 +487,8 @@ a{color:inherit}
     <div class="about-grid">
       <div class="about-text" data-reveal>
         <div class="kicker">наша история</div>
-        <h2>Мы открылись в 2026-м с одной кофемашиной и верой в то, что хороший кофе меняет утро, до сих пор пытаемся верить в это</h2>
-        <p>Сегодня «Утро» - это <strong>своя обжарка</strong>, зерно от двенадцати ферм и команда бариста, которая знает постоянных гостей по именам, а именно владельца и Виталия. Мы не гонимся за трендами: просто варим честный кофе и печём то, что любим сами, потом сами и едим.</p>
+        <h2>Мы открылись в 2019-м с одной кофемашиной и верой в то, что хороший кофе меняет утро</h2>
+        <p>Сегодня «Утро» — это <strong>своя обжарка</strong>, зерно от двенадцати ферм и команда бариста, которая знает постоянных гостей по именам. Мы не гонимся за трендами: просто варим честный кофе и печём то, что любим сами.</p>
         <p>Каждое зерно проходит <strong>тройной контроль</strong>: на ферме, при обжарке и в чашке. Если капучино вам не понравился — сварим заново, без вопросов.</p>
       </div>
       <div class="about-imgs" data-reveal>
@@ -503,7 +504,7 @@ a{color:inherit}
     <div class="reviews-grid">
       <div class="review" data-reveal>
         <div class="stars">★★★★★</div>
-        <q>Лучший флэт уайт в городе. Прихожу каждое утро перед работой — уже третий год. Еще третий год не могу найти работу, это как то связанно?</q>
+        <q>Лучший флэт уайт в городе. Прихожу каждое утро перед работой — уже третий год.</q>
         <div class="who">Марина К.</div>
       </div>
       <div class="review" data-reveal>
@@ -616,7 +617,7 @@ a{color:inherit}
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Кофейня «Утро». Все права защищены, наверно.</span>
+    <span>© 2026 Кофейня «Утро». Все права защищены.</span>
     <span>Сделано с любовью и кофеином</span>
   </div>
 </footer>
@@ -635,7 +636,7 @@ a{color:inherit}
     <div class="total-row"><span class="t">Итого</span><span class="v" id="cartTotal">0 ₽</span></div>
     <div class="delivery-toggle">
       <label><input type="radio" name="delivery" value="pickup" checked><span>Самовывоз</span></label>
-      <label><input type="radio" name="delivery" value="delivery"><span>Без доставки, только самовывоз</span></label>
+      <label><input type="radio" name="delivery" value="delivery"><span>Доставка</span></label>
     </div>
     <div class="field">
       <label for="cName">Имя</label>
@@ -656,7 +657,7 @@ a{color:inherit}
   </div>
   <div class="drawer-body order-done" id="orderDone" style="display:none">
     <svg class="check" viewBox="0 0 52 52"><circle cx="26" cy="26" r="25" fill="none" stroke="#ed3e35" stroke-width="2"/><path fill="none" stroke="#ed3e35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M14 27l8 8 16-17"/></svg>
-    <h4>Заказ принят! Когда нибудь приготовим</h4>
+    <h4>Заказ принят!</h4>
     <p>Номер заказа: <span class="code" id="orderCode"></span></p>
     <p id="orderHint" style="margin-top:10px"></p>
   </div>
@@ -668,26 +669,51 @@ a{color:inherit}
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 <script>
+/* ============================================================
+   НАСТРОЙКИ TELEGRAM
+   ------------------------------------------------------------
+   Вставь свой токен от @BotFather и Chat ID от @userinfobot.
+   ВНИМАНИЕ: токен виден всем в исходниках страницы.
+   ============================================================ */
+const TG_BOT_TOKEN = "1234567890:AAH..."; // <-- замени
+const TG_CHAT_ID   = "123456789";         // <-- замени
+
+async function sendToTelegram(text) {
+  const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+  const body = new URLSearchParams({
+    chat_id: TG_CHAT_ID,
+    text: text,
+    parse_mode: "HTML",
+  });
+  // mode:'no-cors' — обязателен, т.к. Telegram не отдаёт CORS-заголовки.
+  // Ответ прочитать нельзя, поэтому считаем запрос успешным по факту отправки.
+  await fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body.toString(),
+  });
+}
 
 /* ================= ДАННЫЕ МЕНЮ ================= */
 const MENU = [
   // --- КОФЕ ---
-  {id:1, cat:'coffee', name:'Эспрессо', desc:'За спасибо отдам', price:150, img:'photo-1510707577719-ae7c14805e3a'},
-  {id:2, cat:'coffee', name:'Капучино', desc:'Вкусно наверно', price:220, img:'photo-1572442388796-11668a67e53d', badge:'Хит'},
-  {id:3, cat:'coffee', name:'Латте', desc:'Думайте', price:230, img:'photo-1461023058943-07fcbe16d735'},
-  {id:4, cat:'coffee', name:'Флэт уайт', desc:'Не знаю, не пробовал', price:240, img:'photo-1517701550927-30cf4ba1dba5'},
-  {id:5, cat:'coffee', name:'Раф ванильный', desc:'Не продам', price:260, img:'photo-1541167760496-1628856ab772'},
-  {id:6, cat:'coffee', name:'Фильтр · Эфиопия', desc:'Это что вообще', price:200, img:'photo-1497935586351-b67a49e012bf'},
+  {id:1, cat:'coffee', name:'Эспрессо', desc:'Классический шот из зерна тёмной обжарки', price:150, img:'photo-1510707577719-ae7c14805e3a'},
+  {id:2, cat:'coffee', name:'Капучино', desc:'Эспрессо, молоко и бархатная пенка', price:220, img:'photo-1572442388796-11668a67e53d', badge:'Хит'},
+  {id:3, cat:'coffee', name:'Латте', desc:'Мягкий, сливочный, с лёгкой сладостью', price:230, img:'photo-1461023058943-07fcbe16d735'},
+  {id:4, cat:'coffee', name:'Флэт уайт', desc:'Двойной эспрессо и тонкий слой молока', price:240, img:'photo-1517701550927-30cf4ba1dba5'},
+  {id:5, cat:'coffee', name:'Раф ванильный', desc:'Эспрессо со сливками и ванильным сиропом', price:260, img:'photo-1541167760496-1628856ab772'},
+  {id:6, cat:'coffee', name:'Фильтр · Эфиопия', desc:'Ягодные ноты, заварен в пуровере', price:200, img:'photo-1497935586351-b67a49e012bf'},
 
   // --- ДЕСЕРТЫ ---
-  {id:7, cat:'dessert', name:'Чизкейк Нью-Йорк', desc:'круто👍', price:290, img:'photo-1533134242443-d4fd215305ad'},
-  {id:8, cat:'dessert', name:'Круассан миндальный', desc:'мяу', price:190, img:'photo-1555507036-ab1f4038808a', badge:'Хит'},
-  {id:9, cat:'dessert', name:'Тирамису', desc:'Бананас', price:310, img:'photo-1571877227200-a0d98ea607e9'},
-  {id:10, cat:'dessert', name:'Синнабон', desc:'вкусный', price:250, img:'photo-1509365465985-25d11c17e812'},
+  {id:7, cat:'dessert', name:'Чизкейк Нью-Йорк', desc:'Классика на песочной основе', price:290, img:'photo-1533134242443-d4fd215305ad'},
+  {id:8, cat:'dessert', name:'Круассан миндальный', desc:'Слоёное тесто, миндальный крем', price:190, img:'photo-1555507036-ab1f4038808a', badge:'Хит'},
+  {id:9, cat:'dessert', name:'Тирамису', desc:'Маскарпоне, савоярди, какао', price:310, img:'photo-1571877227200-a0d98ea607e9'},
+  {id:10, cat:'dessert', name:'Синнабон', desc:'Тёплая булочка с корицей и глазурью', price:250, img:'photo-1509365465985-25d11c17e812'},
 
   // --- ЗАВТРАКИ ---
-  {id:11, cat:'breakfast', name:'Сырники с грушей', desc:'кислые какие то', price:340, img:'photo-1567620905732-2d1ec7ab7445'},
-  {id:12, cat:'breakfast', name:'Тост с авокадо', desc:'На вкус как трава', price:380, img:'photo-1541519227354-08fa5d50c44d', badge:'New'},
+  {id:11, cat:'breakfast', name:'Сырники с грушей', desc:'Со сметаной и карамелизированной грушей', price:340, img:'photo-1567620905732-2d1ec7ab7445'},
+  {id:12, cat:'breakfast', name:'Тост с авокадо', desc:'Хлеб на закваске, авокадо, яйцо пашот', price:380, img:'photo-1541519227354-08fa5d50c44d', badge:'New'},
 ];
 const fmt = n => n.toLocaleString('ru-RU') + ' ₽';
 const imgUrl = (id,w=600) => `https://images.unsplash.com/${id}?w=${w}&q=75&auto=format&fit=crop`;
@@ -798,7 +824,8 @@ function renderMenu(cat = 'all') {
     card.style.animationDelay = i * 0.05 + 's';
     card.innerHTML = `
       <div class="card-img">
-        <img src="${imgUrl(m.img)}" alt="${m.name}" loading="lazy">
+        <img src="${imgUrl(m.img)}" alt="${m.name}" loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=75&auto=format&fit=crop'">
         ${m.badge ? `<div class="sticker">${m.badge}</div>` : ''}
       </div>
       <div class="card-body">
@@ -915,7 +942,6 @@ function openCart() {
 function closeCart() {
   drawer.classList.remove('open'); overlay.classList.remove('show');
   document.body.classList.remove('locked');
-  /* возвращаем форму после экрана успеха */
   setTimeout(() => {
     orderDone.style.display = 'none';
     cartFoot.style.display = 'block';
@@ -933,8 +959,8 @@ document.querySelectorAll('input[name="delivery"]').forEach(r => r.addEventListe
     document.querySelector('input[name="delivery"]:checked').value === 'delivery' ? 'block' : 'none';
 }));
 
-/* оформление заказа */
-document.getElementById('checkoutBtn').addEventListener('click', () => {
+/* ================= ОФОРМЛЕНИЕ ЗАКАЗА → TELEGRAM ================= */
+document.getElementById('checkoutBtn').addEventListener('click', async () => {
   const name = document.getElementById('cName');
   const phone = document.getElementById('cPhone');
   const addr = document.getElementById('cAddress');
@@ -943,17 +969,42 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
   ok = validate(name, v => v.trim().length >= 2) && ok;
   ok = validate(phone, v => v.replace(/\D/g, '').length >= 10) && ok;
   if (isDelivery) ok = validate(addr, v => v.trim().length >= 5) && ok;
+
   if (!ok) { toast('Проверьте выделенные поля'); return; }
-  const code = 'УТРО-' + Math.floor(1000 + Math.random() * 9000);
-  document.getElementById('orderCode').textContent = code;
-  document.getElementById('orderHint').textContent = isDelivery
-    ? 'Курьер будет в течение 40–60 минут. Оплата при получении.'
-    : 'Заказ будет готов через 15–20 минут. Ждём вас на ул. Примерной, 12.';
-  cart = {}; saveCart(); updateBadge();
-  cartFoot.style.display = 'none';
-  cartBody.innerHTML = '';
-  orderDone.style.display = 'block';
-  toast('Заказ ' + code + ' оформлен');
+
+  // Состав заказа
+  let orderDetails = "";
+  Object.entries(cart).forEach(([id, qty]) => {
+    const item = MENU.find(m => m.id === +id);
+    if (item) orderDetails += `• ${item.name} × ${qty} = ${fmt(item.price * qty)}\n`;
+  });
+  orderDetails += `\n<b>Итого: ${fmt(cartSum())}</b>`;
+
+  const msg =
+    `🛒 <b>Новый заказ с сайта «Утро»</b>\n\n` +
+    `👤 <b>Имя:</b> ${escapeHtml(name.value)}\n` +
+    `📞 <b>Телефон:</b> ${escapeHtml(phone.value)}\n` +
+    `🚚 <b>Способ:</b> ${isDelivery ? 'Доставка' : 'Самовывоз'}\n` +
+    (isDelivery ? `🏠 <b>Адрес:</b> ${escapeHtml(addr.value)}\n` : '') +
+    `\n<b>Состав заказа:</b>\n${escapeHtml(orderDetails)}`;
+
+  try {
+    await sendToTelegram(msg);
+    // Считаем успешным (ответ Telegram прочитать нельзя из-за no-cors)
+    const code = 'УТРО-' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('orderCode').textContent = code;
+    document.getElementById('orderHint').textContent = isDelivery
+      ? 'Курьер будет в течение 40–60 минут. Оплата при получении.'
+      : 'Заказ будет готов через 15–20 минут. Ждём вас на ул. Примерной, 12.';
+    cart = {}; saveCart(); updateBadge();
+    cartFoot.style.display = 'none';
+    cartBody.innerHTML = '';
+    orderDone.style.display = 'block';
+    toast('Заказ ' + code + ' оформлен');
+  } catch (error) {
+    console.error(error);
+    toast('Не удалось отправить заказ. Попробуйте ещё раз.');
+  }
 });
 
 /* ================= ВАЛИДАЦИЯ ================= */
@@ -965,10 +1016,17 @@ function validate(input, test) {
   return ok;
 }
 
-/* ================= БРОНЬ СТОЛИКА ================= */
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+/* ================= БРОНЬ СТОЛИКА → TELEGRAM ================= */
 const bDate = document.getElementById('bDate');
 bDate.min = new Date().toISOString().split('T')[0];
-document.getElementById('bookForm').addEventListener('submit', e => {
+
+document.getElementById('bookForm').addEventListener('submit', async e => {
   e.preventDefault();
   let ok = true;
   ok = validate(document.getElementById('bName'), v => v.trim().length >= 2) && ok;
@@ -976,10 +1034,27 @@ document.getElementById('bookForm').addEventListener('submit', e => {
   ok = validate(bDate, v => v && v >= bDate.min) && ok;
   ok = validate(document.getElementById('bTime'), v => !!v) && ok;
   if (!ok) { toast('Проверьте выделенные поля'); return; }
-  document.getElementById('bookCode').textContent = 'БРН-' + Math.floor(100 + Math.random() * 900);
-  document.getElementById('bookForm').style.display = 'none';
-  document.getElementById('bookSuccess').classList.add('show');
-  toast('Столик забронирован');
+
+  const msg =
+    `📅 <b>Новая бронь столика</b>\n\n` +
+    `👤 <b>Имя:</b> ${escapeHtml(document.getElementById('bName').value)}\n` +
+    `📞 <b>Телефон:</b> ${escapeHtml(document.getElementById('bPhone').value)}\n` +
+    `🗓 <b>Дата:</b> ${escapeHtml(document.getElementById('bDate').value)}\n` +
+    `🕐 <b>Время:</b> ${escapeHtml(document.getElementById('bTime').value)}\n` +
+    `👥 <b>Гостей:</b> ${escapeHtml(document.getElementById('bGuests').value)}\n` +
+    `📍 <b>Зона:</b> ${escapeHtml(document.getElementById('bZone').value)}\n` +
+    `💬 <b>Пожелания:</b> ${escapeHtml(document.getElementById('bComment').value) || '—'}`;
+
+  try {
+    await sendToTelegram(msg);
+    document.getElementById('bookCode').textContent = 'БРН-' + Math.floor(100 + Math.random() * 900);
+    document.getElementById('bookForm').style.display = 'none';
+    document.getElementById('bookSuccess').classList.add('show');
+    toast('Столик забронирован');
+  } catch (error) {
+    console.error(error);
+    toast('Не удалось отправить бронь. Попробуйте ещё раз.');
+  }
 });
 
 /* ================= TOAST ================= */
